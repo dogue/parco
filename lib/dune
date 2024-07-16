@@ -1,0 +1,3 @@
+(library
+ (name parco)
+ (public_name parco))
