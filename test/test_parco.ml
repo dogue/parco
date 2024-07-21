@@ -45,6 +45,16 @@ let test_alpha () =
   assert (alpha "a123" = Some ('a', "123"));
   assert (alpha "123" = None)
 
+let test_any () =
+  let p1 = char 'a' in
+  let p2 = char 'b' in
+  let p3 = char 'c' in
+  let pl = [ p1; p2; p3 ] in
+  assert (any pl "abc" = Some ('a', "bc"));
+  assert (any pl "bcd" = Some ('b', "cd"));
+  assert (any pl "cde" = Some ('c', "de"));
+  assert (any pl "def" = None)
+
 let () =
   test_first ();
   test_char ();
@@ -53,4 +63,5 @@ let () =
   test_seq ();
   test_many ();
   test_many1 ();
-  test_alpha ()
+  test_alpha ();
+  test_any ()

@@ -52,3 +52,14 @@ let many1 (p : 'a parser) : 'a list parser =
   match many p s with
   | Some (res, rem) when List.length res > 0 -> Some (res, rem)
   | _ -> None
+
+let any (pl : 'a parser list) : 'a parser =
+ fun s ->
+  let rec aux n =
+    if n < List.length pl then
+      match (List.nth pl n) s with
+      | Some (res, rem) -> Some (res, rem)
+      | None -> aux (n + 1)
+    else None
+  in
+  aux 0
