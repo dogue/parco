@@ -41,6 +41,10 @@ let test_many1 () =
   assert (many1 p "aabc" = Some ([ 'a'; 'a' ], "bc"));
   assert (many1 p "bcd" = None)
 
+let test_alpha () =
+  assert (alpha "a123" = Some ('a', "123"));
+  assert (alpha "123" = None)
+
 let () =
   test_first ();
   test_char ();
@@ -48,4 +52,5 @@ let () =
   test_alt ();
   test_seq ();
   test_many ();
-  test_many1 ()
+  test_many1 ();
+  test_alpha ()
